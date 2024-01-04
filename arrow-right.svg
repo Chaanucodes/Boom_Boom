@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <radialGradient id="a" cx="24.837" cy="36.421" r="15.645" gradientTransform="matrix(1 0 0 .53672 0 16.873)" gradientUnits="userSpaceOnUse">
+   <stop offset="0"/>
+   <stop stop-opacity="0" offset="1"/>
+  </radialGradient>
+  <radialGradient id="b" cx="17.475" cy="1.4733" r="17.171" gradientTransform="matrix(2.0467 0 0 1.5576 -15.83 2.0092)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#fff" offset="0"/>
+   <stop stop-color="#fff" stop-opacity="0" offset="1"/>
+  </radialGradient>
+  <radialGradient id="d" cx="50.26" cy="9.895" r="16.956" gradientTransform="matrix(2.0836 .009531 .008985 -1.9641 -96.09 25.403)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#fee39e" offset="0"/>
+   <stop stop-color="#f18c00" offset=".24"/>
+   <stop stop-color="#ec6600" offset=".5"/>
+   <stop stop-color="#e83a00" offset="1"/>
+  </radialGradient>
+  <radialGradient id="c" cx="39.154" cy="101.49" r="19" gradientTransform="matrix(-.029369 1.3714 -1.6849 -.036082 183.92 -37.237)" gradientUnits="userSpaceOnUse">
+   <stop stop-color="#f5a300" offset="0"/>
+   <stop stop-color="#f18c00" offset=".22"/>
+   <stop stop-color="#aa2900" offset="1"/>
+  </radialGradient>
+ </defs>
+ <path transform="matrix(-1.2712 0 0 1.2712 56.573 -14.315)" d="m40.482 36.421a15.645 8.3969 0 1 1 -31.289 0 15.645 8.3969 0 1 1 31.289 0z" fill="url(#a)" fill-rule="evenodd" opacity=".2995"/>
+ <path d="m30.438 39.484v-7.9688h12.938v-18.031h-12.938l-0.0625-7.9688-19.945 16.751z" fill="url(#d)" fill-rule="evenodd" stroke="url(#c)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/>
+ <path d="m29.417 7.3879-17.562 14.938 17.598 14.993-0.0221-6.8087h12.945l0.01105-16.184-12.969 0.0625z" fill="none" opacity=".7" stroke="#fff"/>
+ <path d="m12.059 23.141c11.938 2.7425 15.741-5.9888 30.828-0.35938l-0.01831-8.9558-12.95 0.04956-0.01294-7.5754-18.789 15.978z" fill="url(#b)" fill-rule="evenodd" opacity=".508"/>
+</svg>

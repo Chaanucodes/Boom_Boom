@@ -1,0 +1,233 @@
+[gd_scene load_steps=20 format=3 uid="uid://c7a3jbjeumf3t"]
+
+[ext_resource type="PackedScene" uid="uid://6tjuhsv5cf40" path="res://current_player.tscn" id="1_ya0gu"]
+[ext_resource type="Script" path="res://LandingPad.gd" id="2_pfyhy"]
+[ext_resource type="PackedScene" uid="uid://b7qijanow1cgq" path="res://controls/touch_controls.tscn" id="3_sauy0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lde82"]
+albedo_color = Color(0.941176, 0.701961, 0.745098, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e5p8g"]
+albedo_color = Color(1, 0.870588, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qy2ne"]
+albedo_color = Color(0, 0.482353, 0.435294, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wjuaw"]
+albedo_color = Color(0.505882, 0.192157, 0.0470588, 0.356863)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yl7s6"]
+size = Vector3(20, 6, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_crdjg"]
+albedo_color = Color(0, 0.6, 0.980392, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_1lr7g"]
+material = SubResource("StandardMaterial3D_crdjg")
+inner_radius = 2.629
+outer_radius = 1.315
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uug6e"]
+albedo_color = Color(0, 0.439216, 0.72549, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_103an"]
+material = SubResource("StandardMaterial3D_uug6e")
+custom_aabb = AABB(2.08165e-12, 2.08165e-12, 2.08165e-12, 5, 5, 5)
+text = "Adventures by Pratikshit"
+font_size = 127
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_te2ip"]
+albedo_color = Color(0.16245, 0.57, 0.1254, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_fwfy0"]
+material = SubResource("StandardMaterial3D_te2ip")
+radius = 6.0
+height = 5.0
+is_hemisphere = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o1u8m"]
+albedo_color = Color(0.16245, 0.57, 0.1254, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_j8cbl"]
+material = SubResource("StandardMaterial3D_o1u8m")
+radius = 6.99
+height = 5.5
+is_hemisphere = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ixprv"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_s2kfi"]
+sky_material = SubResource("ProceduralSkyMaterial_ixprv")
+
+[sub_resource type="Environment" id="Environment_tixk1"]
+background_mode = 1
+background_color = Color(0, 0.0392157, 0.0509804, 1)
+sky = SubResource("Sky_s2kfi")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Level" type="Node3D" groups=["Launch"]]
+
+[node name="Player" parent="." instance=ExtResource("1_ya0gu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1.4765, 2.08165e-12)
+max_contacts_reported = 10
+contact_monitor = true
+thurst = 912.085
+level = 2
+
+[node name="Obstacle" type="CSGBox3D" parent="." groups=["Ground"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.02407, 2.08165e-12)
+use_collision = true
+size = Vector3(4, 4, 3)
+material = SubResource("StandardMaterial3D_lde82")
+
+[node name="LaunchPad" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0.25, 2.08165e-12)
+use_collision = true
+size = Vector3(3, 0.5, 3)
+material = SubResource("StandardMaterial3D_e5p8g")
+
+[node name="LandingPad" type="CSGBox3D" parent="." groups=["Goal"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.25, 2.08165e-12)
+use_collision = true
+size = Vector3(2, 0.5, 2)
+material = SubResource("StandardMaterial3D_qy2ne")
+script = ExtResource("2_pfyhy")
+file_path = "res://level/level_3.tscn"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, -4.57979e-16, 3.06707e-16, 3.91991e-16, 0.98209, 0.18841, -3.87502e-16, -0.18841, 0.98209, 2.08165e-12, 6, 10)
+
+[node name="Control" parent="." instance=ExtResource("3_sauy0")]
+
+[node name="Floor" type="CSGBox3D" parent="." groups=["Ground"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -4, 2.08165e-12)
+use_collision = true
+size = Vector3(30, 8, 5)
+material = SubResource("StandardMaterial3D_wjuaw")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Floor"]
+transform = Transform3D(1, -1.21652e-31, 0, -1.21652e-31, 1, 0, 0, 0, 1, -2.07987e-12, 9.09067, -2.08343e-12)
+omni_range = 12.0
+omni_attenuation = 0.5
+
+[node name="WallLeft1" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.986066, -0.166356, 0, 0.166356, 0.986066, 0, 0, 0, 1, -15.3673, 7.00063, 0)
+size = Vector3(4, 10, 4)
+material = SubResource("StandardMaterial3D_wjuaw")
+
+[node name="LeftPillar" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.986066, -0.166356, 0, 0.166356, 0.986066, 0, 0, 0, 1, -9.05717, 6.97204, -2.66285)
+size = Vector3(1, 20, 1)
+material = SubResource("StandardMaterial3D_wjuaw")
+
+[node name="RightPillar" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.985996, 0.166769, 3.48787e-16, -0.166769, 0.985996, -3.48787e-16, -4.02069e-16, 2.85736e-16, 1, 10.1104, 6.972, -2.663)
+size = Vector3(1, 20, 1)
+material = SubResource("StandardMaterial3D_wjuaw")
+
+[node name="WallRight1" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.991538, 0.129817, 0, -0.129817, 0.991538, 0, 0, 0, 1, 16.1925, 7.00063, 0)
+size = Vector3(4, 10, 4)
+material = SubResource("StandardMaterial3D_wjuaw")
+
+[node name="WallRight2" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.665322, -0.746557, 0, 0.746557, 0.665322, 0, 0, 0, 1, 13.7907, 13.7257, 0)
+size = Vector3(4, 10, 4)
+material = SubResource("StandardMaterial3D_wjuaw")
+
+[node name="WallLeft2" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.889305, 0.457315, 0, -0.457315, 0.889305, 0, 0, 0, 1, -15.3673, 12.0026, 0)
+size = Vector3(4, 10, 4)
+material = SubResource("StandardMaterial3D_wjuaw")
+
+[node name="Ceiling1" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(0.201967, 0.979392, 0, -0.979393, 0.201967, 0, 0, 0, 1, -9.17423, 14.9546, 0)
+size = Vector3(4, 10, 4)
+material = SubResource("StandardMaterial3D_wjuaw")
+
+[node name="Ceiling2" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(-0.500423, 0.865781, 0, -0.865781, -0.500423, 0, 0, 0, 1, -1.91078, 17.0723, 0)
+size = Vector3(4, 10, 4)
+material = SubResource("StandardMaterial3D_wjuaw")
+
+[node name="Ceiling3" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(-0.141644, 0.989918, 0, -0.989918, -0.141644, 0, 0, 0, 1, 5.81958, 15.5936, 0)
+size = Vector3(4, 10, 4)
+material = SubResource("StandardMaterial3D_wjuaw")
+
+[node name="BackgroundCredits" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, -1.21652e-31, 0, -1.21652e-31, 1, 0, 0, 0, 1, -2.08165e-12, 7.83847, -6.28715)
+mesh = SubResource("BoxMesh_yl7s6")
+skeleton = NodePath("../..")
+
+[node name="Ring" type="MeshInstance3D" parent="Floor/BackgroundCredits"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 9.72737, -1.64142, 2.49535)
+mesh = SubResource("TorusMesh_1lr7g")
+skeleton = NodePath("../../..")
+
+[node name="Ring2" type="MeshInstance3D" parent="Floor/BackgroundCredits"]
+transform = Transform3D(1, 0, -1.12238e-23, -1.21652e-31, -4.37114e-08, 1, 0, -1, -4.37114e-08, -8.095, 3.371, 1.495)
+mesh = SubResource("TorusMesh_1lr7g")
+skeleton = NodePath("../../..")
+
+[node name="Name" type="MeshInstance3D" parent="Floor/BackgroundCredits"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.811721)
+mesh = SubResource("TextMesh_103an")
+
+[node name="PodsCentreBottom" type="MeshInstance3D" parent="Floor/BackgroundCredits"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.54343, -2.64608)
+mesh = SubResource("SphereMesh_fwfy0")
+skeleton = NodePath("../../..")
+
+[node name="PodsRightBottom" type="MeshInstance3D" parent="Floor/BackgroundCredits"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7268, -10.525, -2.64608)
+mesh = SubResource("SphereMesh_fwfy0")
+skeleton = NodePath("../../..")
+
+[node name="PodsLeftBottom" type="MeshInstance3D" parent="Floor/BackgroundCredits"]
+transform = Transform3D(0.970942, 0.239313, 0, -0.239313, 0.970942, 0, 0, 0, 1, -10.759, -6.32098, -2.64608)
+mesh = SubResource("SphereMesh_j8cbl")
+skeleton = NodePath("../../..")
+
+[node name="PodsExtremeRightBottom" type="MeshInstance3D" parent="Floor/BackgroundCredits"]
+transform = Transform3D(0.274026, -0.961722, 0, 0.961722, 0.274026, 0, 0, 0, 1, 14.9043, -6.32098, -2.64608)
+mesh = SubResource("SphereMesh_j8cbl")
+skeleton = NodePath("../../..")
+
+[node name="PodsRightWall" type="MeshInstance3D" parent="Floor/BackgroundCredits"]
+transform = Transform3D(0.274026, -0.961722, 0, 0.961722, 0.274026, 0, 0, 0, 1, 15.7625, -0.361486, -2.64608)
+mesh = SubResource("SphereMesh_j8cbl")
+skeleton = NodePath("../../..")
+
+[node name="PodsLeftWall" type="MeshInstance3D" parent="Floor/BackgroundCredits"]
+transform = Transform3D(0.273959, 0.961741, 3.48787e-16, -0.961741, 0.273959, -3.48787e-16, -4.30996e-16, -2.39889e-16, 1, -14.7078, -0.361486, -2.64608)
+mesh = SubResource("SphereMesh_j8cbl")
+skeleton = NodePath("../../..")
+
+[node name="PodsCeilingRight" type="MeshInstance3D" parent="Floor/BackgroundCredits"]
+transform = Transform3D(-0.999296, -0.0375157, 0, 0.0375158, -0.999296, 0, 0, 0, 1, 8.06249, 8.49896, -3.64518)
+mesh = SubResource("SphereMesh_j8cbl")
+skeleton = NodePath("../../..")
+
+[node name="PodsCeilingCentre" type="MeshInstance3D" parent="Floor/BackgroundCredits"]
+transform = Transform3D(-0.861842, -0.507177, 0, 0.507177, -0.861842, 0, 0, 0, 1, -1.34996, 10.4844, -2.64608)
+mesh = SubResource("SphereMesh_j8cbl")
+skeleton = NodePath("../../..")
+
+[node name="PodsCeilingLeft" type="MeshInstance3D" parent="Floor/BackgroundCredits"]
+transform = Transform3D(-0.911604, 0.411069, 0, -0.411069, -0.911604, 0, 0, 0, 1, -11.7923, 11.5213, -5.04939)
+mesh = SubResource("SphereMesh_j8cbl")
+skeleton = NodePath("../../..")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Floor"]
+transform = Transform3D(0.587641, 0.700721, -0.404559, 1.06232e-08, 0.499998, 0.866027, 0.809122, -0.508913, 0.293819, -2.085e-12, 4, 9.60309)
+light_color = Color(0.721569, 0.419608, 0.254902, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Floor"]
+environment = SubResource("Environment_tixk1")

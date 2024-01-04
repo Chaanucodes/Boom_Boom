@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7qijanow1cgq"]
+
+[ext_resource type="Texture2D" uid="uid://d3tkllh5w2vbj" path="res://fire-30276.svg" id="1_sa5ei"]
+[ext_resource type="Texture2D" uid="uid://c0h8yj4tucfqa" path="res://arrow_right.png" id="2_mapom"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Fire" type="TouchScreenButton" parent="."]
+position = Vector2(1970, 774)
+scale = Vector2(0.9, 0.735)
+texture_normal = ExtResource("1_sa5ei")
+action = "boost"
+visibility_mode = 1
+
+[node name="LeftButton" type="TouchScreenButton" parent="."]
+position = Vector2(369, 1075)
+rotation = 3.14159
+scale = Vector2(0.45, 0.476)
+texture_normal = ExtResource("2_mapom")
+action = "rotate_left"
+
+[node name="RightButton" type="TouchScreenButton" parent="."]
+position = Vector2(409, 813)
+scale = Vector2(0.45, 0.457)
+texture_normal = ExtResource("2_mapom")
+action = "rotate_right"
+
+[connection signal="pressed" from="Fire" to="." method="_on_fire_pressed"]
+[connection signal="released" from="Fire" to="." method="_on_fire_released"]
+[connection signal="pressed" from="LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="released" from="LeftButton" to="." method="_on_left_button_released"]
+[connection signal="pressed" from="RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="released" from="RightButton" to="." method="_on_right_button_released"]

@@ -8,3 +8,5 @@ The game is available in Android and Windows for now.
 The latest builds of game for Android and Windows are available at the root directory of the repository Boom_Boom.apk and Boom_Boom.exe respectively.
 
 The game is yet to be optimized and is far from entering the beta stage yet.
+
+You may want to hide Control nodes in each scene if you want touch controls to disappear when creating a build for laptops.
